@@ -32,65 +32,67 @@ function App() {
     };
 
     return (
-        <div
-        
-            className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
-            style={{
-                backgroundImage: `url('https://images.pexels.com/photos/14820470/pexels-photo-14820470.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')`,
-            }}
-        >
-        {/* <h1 className='text-lg underline justify-center items-center'>Currency converter </h1> */}
-            <div className="w-full max-w-md mx-auto border border-gray-300 rounded-lg p-5 backdrop-blur-sm bg-white/30">
-                <form
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        convert();
-                    }}
-                >
-                    <div className="w-full mb-4">
-                        <InputBox
-                            label="From"
-                            amount={amount}
-                            currencyOptions={options}
-                            onCurrencyChange={(currency) => setFrom(currency)}
-                            selectCurrency={from}
-                            onAmountChange={(value) => setAmount(value)}
-                        />
-                    </div>
-                    <div className="relative w-full h-0.5 my-4">
-                        <button
-                            type="button"
-                            className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
-                            onClick={swap}
-                            aria-label="Swap currencies"
-                        >
-                            Swap
-                        </button>
-                    </div>
-                    <div className="w-full mb-4">
-                        <InputBox
-                            label="To"
-                            amount={convertedAmount}
-                            currencyOptions={options}
-                            onCurrencyChange={(currency) => setTo(currency)}
-                            selectCurrency={to}
-                            amountDisable
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition"
-                        disabled={!amount || from === to}
-                        aria-disabled={!amount || from === to}
-                    >
-                        Convert {from.toUpperCase()} to {to.toUpperCase()}
-                    </button>
-                </form>
-                {(!amount || amount <= 0) && (
-                    <p className="text-red-600 text-sm mt-2">Please enter a valid amount.</p>
-                )}
+        <>
+        <div className="justify-center mx-auto w-full max-w-3xl px-4 py-5 my-8 shadow-md rounded-lg bg-gray-600 text-orange-500">
+          <h1 className="text-2xl md:text-3xl text-center font-bold underline py-5">
+            Password Generator
+          </h1>
+          <div className="flex flex-col md:flex-row rounded-lg shadow-md text-center overflow-hidden gap-y-3 md:gap-y-0">
+            <input
+              type="text"
+              value={password}
+              placeholder="password"
+              className="outline-none px-3 py-1 w-full text-lg md:text-2xl rounded-lg"
+              readOnly
+              ref={passwordRef}
+            />
+            <button
+              onClick={copyClipboard}
+              className="outline-none px-3 py-1 ml-0 md:ml-1 text-lg md:text-2xl rounded-lg bg-blue-600 font-bold"
+            >
+              Copy
+            </button>
+          </div>
+  
+          <div className="flex flex-col md:flex-row text-lg md:text-2xl gap-y-3 md:gap-y-0 gap-x-6 mt-5">
+            <div className="flex flex-col md:flex-row items-center gap-x-2">
+              <input
+                type="range"
+                className="py-3 px-2 flex-grow max-w-full md:max-w-xl accent-blue-600 range-slider cursor-pointer"
+                min={8}
+                max={100}
+                value={length}
+                onChange={(e) => setLength(Number(e.target.value))}
+              />
+              <label className="text-sm md:text-lg mt-2 md:mt-0 whitespace-nowrap">Length: {length}</label>
             </div>
+            <div className="flex flex-col md:flex-row items-center gap-x-2">
+              <input
+                type="checkbox"
+                className="w-6 h-6 py-3 px-2 cursor-pointer accent-blue-600"
+                defaultChecked={number}
+                id="Number"
+                onChange={() => setNumber((prev) => !prev)}
+              />
+              <label htmlFor="Number" className="text-sm md:text-lg mt-2 md:mt-0 whitespace-nowrap">
+                Number
+              </label>
+            </div>
+            <div className="flex flex-col md:flex-row items-center gap-x-2">
+              <input
+                type="checkbox"
+                className="w-6 h-6 py-3 px-2 accent-blue-600 cursor-pointer"
+                id="charcter"
+                defaultChecked={charcter}
+                onChange={() => setCharacter((prev) => !prev)}
+              />
+              <label htmlFor="charcter" className="text-sm md:text-lg mt-2 md:mt-0 whitespace-nowrap">
+                Special Characters
+              </label>
+            </div>
+          </div>
         </div>
+      </>
     );
 }
 
