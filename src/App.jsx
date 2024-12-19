@@ -33,11 +33,13 @@ function App() {
 
     return (
         <div
+        
             className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
             style={{
                 backgroundImage: `url('https://images.pexels.com/photos/14820470/pexels-photo-14820470.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')`,
             }}
         >
+        <h1 className='text-lg underline justify-center items-center'>Currency converter </h1>
             <div className="w-full max-w-md mx-auto border border-gray-300 rounded-lg p-5 backdrop-blur-sm bg-white/30">
                 <form
                     onSubmit={(e) => {
